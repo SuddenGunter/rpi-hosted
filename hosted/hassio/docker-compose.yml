@@ -1,0 +1,22 @@
+version: '3'
+services:
+  homeassistant:
+    container_name: home-assistant
+    image: homeassistant/raspberrypi4-64-homeassistant:stable
+    volumes:
+      - /home/gunterpi/hosted/hassio/cfg:/config
+    environment:
+      - TZ=Europe/Kiev
+    logging:
+      driver: none
+    labels:
+      - "traefik.http.routers.hassioproxy.rule=Host(`hassio.ubuntu`)"
+      - "traefik.http.services.hassio.loadbalancer.server.port=8123"
+    networks:
+      - rpi
+    ports:
+      - "8123/tcp"
+
+networks:
+  rpi:
+    external: true
