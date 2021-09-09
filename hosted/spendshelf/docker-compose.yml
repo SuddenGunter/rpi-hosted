@@ -1,0 +1,50 @@
+# docker-compose for local debugging
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: ${SHELF_POSTGRES_PASSWORD}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./dbdata:/var/lib/postgresql/data
+    networks:
+      - rpi
+    logging:
+        driver: "json-file"
+        options:
+            max-file: "5"
+            max-size: "10m"
+  spendshelf:
+    container_name: spendshelf
+    image: suddengunter/spendshelf-backend:latest
+    restart: always
+    ports:
+      - "8080/tcp"
+    environment:
+      SHELF_MONO_ACCOUNT_ID: "${SHELF_MONO_ACCOUNT_ID}"
+      SHELF_MONO_API_KEY: "${SHELF_MONO_API_KEY}"
+      SHELF_MONO_BASE_URL: "https://api.monobank.ua"
+      SHELF_MONO_ENABLE_IMPORT: "true"
+      SHELF_DB_CONN: "postgres://db/spendshelf?sslmode=disable&user=postgres&password=${SHELF_POSTGRES_PASSWORD}"
+      SHELF_CORS_HOST: "http://spendshelf.ubuntu"
+    networks:
+      - rpi
+    restart: unless-stopped
+    labels:
+      - "traefik.http.routers.spendshelfproxy.rule=Host(`api.spendshelf.ubuntu`)"
+      - "traefik.http.services.spendshelf.loadbalancer.server.port=8080"
+    logging:
+        driver: "json-file"
+        options:
+            max-file: "5"
+            max-size: "10m"
+
+networks:
+  rpi:
+     external: true
