@@ -2,7 +2,7 @@
 
 Config files in this directory allow creating network shown on the diagram below.
 
-![Alt text](network.png?raw=true "Network diagram")
+![Network diagram](network.png?raw=true "Network diagram")
 
 ## Use cases
 
