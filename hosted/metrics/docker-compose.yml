@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     ports:
       - "80"
-    networks: 
+    networks:
       - rpi
     env_file:
       - ./.env
@@ -27,7 +27,8 @@ services:
 
   grafana:
     image : grafana/grafana
-    depends_on: 
+    user: "${UID}:${GID}"
+    depends_on:
       - prometheus
     ports:
       - "3000"
