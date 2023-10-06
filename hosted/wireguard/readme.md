@@ -67,3 +67,30 @@ If everything works - uncomment DNS line and restart the VPN client on your `PC_
 
 - RPI - nothing interesting, except multiple `AllowedIPs` for `VPS`. Those are for all clients who can't connect to `RPI` directly and will go via `VPS`. I also suggest enabling wireguard auto-start on boot (see `VPS` section on how to do it).
 - iPhone_A - I suggest using `qrencode -t png -o client-qr.png -r wg0.conf` to share your iphone config with mobile app.
+
+
+
+## Alternative mode: Forward all traffic
+
+Based on [this guide](https://gist.github.com/nealfennimore/92d571db63404e7ddfba660646ceaf0d).
+
+Before enabling wireguard
+
+```
+echo "net.ipv4.ip_forward = 1
+net.ipv6.conf.all.forwarding = 1" > /etc/sysctl.d/wg.conf
+sysctl --system
+```
+
+Client config [Peer] section - use these for VPS:
+
+```
+AllowedIPs = 0.0.0.0/0, ::/0 # Forward all traffic to server
+```
+
+Server (VPS) config [Interface] section - add:
+
+```
+PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; ip6tables -A FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -A POSTROUTING -o eth0 -j MASQUERADE # Add forwarding when VPN is started
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE; ip6tables -D FORWARD -i wg0 -j ACCEPT; ip6tables -t nat -D POSTROUTING -o eth0 -j MASQUERADE # Remove forwarding when VPN is shutdown
+```

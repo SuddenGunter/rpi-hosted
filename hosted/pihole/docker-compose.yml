@@ -7,28 +7,33 @@ services:
     ports:
       - "53:53/tcp"
       - "53:53/udp"
-      - "67:67/udp"
-      - "80/tcp"
-      - "443:443/tcp"
+      # - "67:67/udp"
+      - "80:80/tcp"
+      # - "443:443/tcp"
     environment:
       - TZ='Europe/Kiev'
-      #- WEBPASSWORD=PUT_YOUR_PASSWORD_HERE
+      - WEBPASSWORD=PUT_YOUR_PASSWORD_HERE
+      - PIHOLE_UID=1000
+      - PIHOLE_GID=1000
     volumes:
       - './etc-pihole/:/etc/pihole/'
       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
-    dns:
-      - 127.0.0.1
-      - 1.1.1.1
+    #    dns:
+    #      - 127.0.0.1
+    #      - 1.1.1.1
     networks:
       - rpi
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
     privileged: true
-    labels:
-      - "traefik.http.routers.piholeproxy.rule=Host(`ubuntu`)"
-      - "traefik.http.services.pihole.loadbalancer.server.port=80"
+    # labels:
+    #   - "traefik.http.routers.piholeproxy.rule=Host(`ubuntu`)"
+    #   - "traefik.http.services.pihole.loadbalancer.server.port=80"
 
 networks:
   rpi:
     external: true
+
+
+# comments: run with docker-compose up -d, then stop, chown -R $uid:$gid /etc-dnsmasq.d/ and restart
