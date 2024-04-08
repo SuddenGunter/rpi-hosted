@@ -1,0 +1,419 @@
+[
+    {
+        "id": "3ce04c6b54403d92",
+        "type": "tab",
+        "label": "home_alarm",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a03d06cdf8fbb0b5",
+        "type": "mqtt in",
+        "z": "3ce04c6b54403d92",
+        "name": "",
+        "topic": "zigbee2mqtt/+",
+        "qos": "0",
+        "datatype": "json",
+        "broker": "74e7c1616c5cb13f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 70,
+        "y": 500,
+        "wires": [
+            [
+                "b432ac38e48e04b3"
+            ]
+        ]
+    },
+    {
+        "id": "a88a78e274063369",
+        "type": "telegram sender",
+        "z": "3ce04c6b54403d92",
+        "name": "Notify",
+        "bot": "277040c87e694a4d",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 890,
+        "y": 460,
+        "wires": [
+            [
+                "f76454e09c1e89bc"
+            ]
+        ]
+    },
+    {
+        "id": "63d266183f3457ca",
+        "type": "template",
+        "z": "3ce04c6b54403d92",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n    \"chatId\": 1,\n    \"type\": \"message\",\n    {{#payload.contact}}\n        \"content\": \"{{payload.topic}} closed\"\n    {{/payload.contact}}\n    {{^payload.contact}}\n        \"content\": \"🟥 {{payload.topic}} opened\"\n    {{/payload.contact}}\n}",
+        "output": "json",
+        "x": 520,
+        "y": 500,
+        "wires": [
+            [
+                "ca5d32982d95f36b"
+            ]
+        ]
+    },
+    {
+        "id": "f76454e09c1e89bc",
+        "type": "debug",
+        "z": "3ce04c6b54403d92",
+        "d": true,
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1040,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "74e9a89d165fc03e",
+        "type": "telegram receiver",
+        "z": "3ce04c6b54403d92",
+        "d": true,
+        "name": "",
+        "bot": "277040c87e694a4d",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "x": 630,
+        "y": 780,
+        "wires": [
+            [
+                "d6ac10045623ba0f"
+            ],
+            [
+                "d6ac10045623ba0f"
+            ]
+        ]
+    },
+    {
+        "id": "5ac140b54b67f13c",
+        "type": "catch",
+        "z": "3ce04c6b54403d92",
+        "d": true,
+        "name": "",
+        "scope": null,
+        "uncaught": false,
+        "x": 840,
+        "y": 720,
+        "wires": [
+            [
+                "63d1e15aa83767de"
+            ]
+        ]
+    },
+    {
+        "id": "63d1e15aa83767de",
+        "type": "debug",
+        "z": "3ce04c6b54403d92",
+        "d": true,
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "ca5d32982d95f36b",
+        "type": "delay",
+        "z": "3ce04c6b54403d92",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "15",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 700,
+        "y": 540,
+        "wires": [
+            [
+                "a88a78e274063369"
+            ]
+        ]
+    },
+    {
+        "id": "3127bb273244a873",
+        "type": "change",
+        "z": "3ce04c6b54403d92",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "topic",
+                "pt": "msg",
+                "from": "zigbee2mqtt/",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "move",
+                "p": "topic",
+                "pt": "msg",
+                "to": "payload.topic",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 500,
+        "wires": [
+            [
+                "63d266183f3457ca"
+            ]
+        ]
+    },
+    {
+        "id": "9193645d77340aa2",
+        "type": "mqtt in",
+        "z": "3ce04c6b54403d92",
+        "name": "",
+        "topic": "zigbee2mqtt/+/availability",
+        "qos": "0",
+        "datatype": "utf8",
+        "broker": "74e7c1616c5cb13f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 600,
+        "wires": [
+            [
+                "e9b8ee5925d85947"
+            ]
+        ]
+    },
+    {
+        "id": "e9b8ee5925d85947",
+        "type": "change",
+        "z": "3ce04c6b54403d92",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "topic",
+                "pt": "msg",
+                "from": "zigbee2mqtt/",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "topic",
+                "pt": "msg",
+                "from": "/availability",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.status",
+                "tot": "msg"
+            },
+            {
+                "t": "move",
+                "p": "topic",
+                "pt": "msg",
+                "to": "payload.topic",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 600,
+        "wires": [
+            [
+                "a3f5731a6da23abf"
+            ]
+        ]
+    },
+    {
+        "id": "a3f5731a6da23abf",
+        "type": "template",
+        "z": "3ce04c6b54403d92",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "{\n    \"chatId\": 1,\n    \"type\": \"message\",\n    \"content\": \"{{payload.topic}} sensor {{payload.status}}\"\n}",
+        "output": "json",
+        "x": 520,
+        "y": 600,
+        "wires": [
+            [
+                "ca5d32982d95f36b"
+            ]
+        ]
+    },
+    {
+        "id": "d6ac10045623ba0f",
+        "type": "debug",
+        "z": "3ce04c6b54403d92",
+        "d": true,
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "307a0b24fd6d887b",
+        "type": "cronplus",
+        "z": "3ce04c6b54403d92",
+        "name": "",
+        "outputField": "payload",
+        "timeZone": "",
+        "storeName": "",
+        "commandResponseMsgOutput": "output1",
+        "defaultLocation": "",
+        "defaultLocationType": "default",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "schedule1",
+                "topic": "topic1",
+                "payloadType": "json",
+                "payload": "{\"chatId\": 1,\"type\":\"message\",\"content\":\"🤖 HomeAlarm is online and working\"}",
+                "expressionType": "cron",
+                "expression": "0 0 8 * * *",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 360,
+        "y": 720,
+        "wires": [
+            [
+                "ca5d32982d95f36b"
+            ]
+        ]
+    },
+    {
+        "id": "b432ac38e48e04b3",
+        "type": "rbe",
+        "z": "3ce04c6b54403d92",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "septopics": true,
+        "property": "payload.contact",
+        "topi": "topic",
+        "x": 250,
+        "y": 400,
+        "wires": [
+            [
+                "3127bb273244a873"
+            ]
+        ]
+    },
+    {
+        "id": "74e7c1616c5cb13f",
+        "type": "mqtt-broker",
+        "name": "mqttk3s",
+        "broker": "mqtt-service",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "277040c87e694a4d",
+        "type": "telegram bot",
+        "botname": "",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "none",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": true
+    }
+]

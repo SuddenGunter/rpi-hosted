@@ -1,0 +1,89 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: z2m-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
+--- 
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: z2m
+spec:
+  selector:
+    matchLabels:
+      app: z2m
+  template:
+    metadata:
+      labels:
+        app: z2m
+    spec:
+      containers:
+      - name: z2m
+        image: koenkk/zigbee2mqtt:1.36.1
+        env:
+        - name: ZIGBEE2MQTT_CONFIG_MQTT_USER
+          value: "!z2msecret.yaml user"
+        - name: ZIGBEE2MQTT_CONFIG_MQTT_PASSWORD
+          value: "!z2msecret.yaml password"
+        - name: ZIGBEE2MQTT_CONFIG_MQTT_SERVER
+          value: "!z2msecret.yaml server"
+        - name: ZIGBEE2MQTT_CONFIG_MQTT_ADVANCED_NETWORK_KEY
+          value: "!z2msecret.yaml network_key"
+        - name: ZIGBEE2MQTT_CONFIG_FRONTEND
+          value: "true"
+        - name: ZIGBEE2MQTT_CONFIG_SERIAL_PORT
+          value: "/dev/ttyACM0"
+        - name: ZIGBEE2MQTT_CONFIG_AVAILABILITY
+          value: "true"
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: data
+          mountPath: /app/data
+        - name: credentials
+          mountPath: /app/data/z2msecret.yaml
+          subPath: z2msecret.yaml
+        - name: dev-ttyacm0
+          mountPath: /dev/ttyACM0
+        - name: run-udev
+          mountPath: /run/udev
+          readOnly: true      
+        resources:
+          requests:
+            cpu: 200m
+            memory: 256Mi
+          limits:
+            cpu: 1
+            memory: 1Gi
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: z2m-data
+      - name: credentials
+        secret:
+          secretName: z2m-secret # kubectl create secret generic z2m-secret --from-file=z2msecret.yaml
+      - name: dev-ttyacm0
+        hostPath:
+          path: /dev/ttyACM0
+      - name: run-udev
+        hostPath:
+          path: /run/udev
+--- 
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: z2m-service
+spec:
+  type: ClusterIP
+  selector:
+    app: z2m
+  ports:
+  - port: 8080

@@ -1,0 +1,84 @@
+# TODO: fix secret owner
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mqtt-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mqtt-config
+data:
+  custom.conf: |
+    listener 1883
+    password_file /mqttconf/mqttcreds.txt
+    allow_anonymous false
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mqtt
+spec:
+  selector:
+    matchLabels:
+      app: mqtt
+  template:
+    metadata:
+      labels:
+        app: mqtt
+    spec:
+      containers:
+      - name: mqtt
+        image: eclipse-mosquitto:2.0
+        command: ["mosquitto"]
+        args: ["-c", "/mqttconf/custom.conf"]
+        volumeMounts:
+        - name: data
+          mountPath: /mosquitto
+        - name: custom-config
+          mountPath: /mqttconf/custom.conf
+          subPath: custom.conf
+        - name: credentials
+          mountPath: /mqttconf/mqttcreds.txt
+          subPath: mqttcreds.txt
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 1
+            memory: 1Gi
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: mqtt-data
+      - name: custom-config
+        configMap:
+          name: mqtt-config 
+      - name: credentials
+        secret:
+          secretName: mqtt-credentials # kubectl create secret generic mqtt-credentials --from-file=mqttcreds.txt
+
+--- 
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mqtt-service
+spec:
+  type: ClusterIP
+  selector:
+    app: mqtt
+  ports:
+  - port: 1883
