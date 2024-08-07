@@ -2,9 +2,15 @@
 
 Backup of things I run on my Raspberry Pi 4 4GB.
 
-## K3s (new env)
+## V3 (current version)
 
-My current production setup: Pi 4 (4GB) running ubuntu server and k3s.
+I got tired of kubernetes limitations when trying to use a single RPi mostly for IoT stuff.
+
+Went back to docker-compose files.
+
+## K3s (v2 / deprecated)
+
+Pi 4 (4GB) running ubuntu server and k3s.
 
 For zigbee I use connbee 2 + zigbee2mqtt (eclipse/mosquitto used as mqtt broker).
 
@@ -12,7 +18,7 @@ Node-RED is used for some basic home automation, I'm not going back to home assi
 
 Wireguard is not used, cause external access is not required yet.
 
-## hosted (old env)
+## hosted (v1 / deprecated)
 
 Mostly includes stuff from previous Pi deployment and I do not use it on my current production deployment.
 Everything in here is configured via docker-compose.

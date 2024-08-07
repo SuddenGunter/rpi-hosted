@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+    mqtt:
+        image: eclipse-mosquitto:2.0
+        restart: unless-stopped
+        volumes:
+            - './mqtt/mosquitto-data:/mosquitto'
+            - './mqtt/custom.conf:/mqttconf/custom.conf'
+            - './mqtt/mqttcreds.txt:/mqttconf/mqttcreds.txt'
+        command: 'mosquitto -c /mqttconf/custom.conf'
+        networks:
+          - iot
+    zigbee2mqtt:
+        restart: unless-stopped
+        image: koenkk/zigbee2mqtt:1.39.1
+        volumes:
+            - ./zigbee2mqtt:/app/data
+            - /run/udev:/run/udev:ro
+        environment:
+            - TZ=Europe/London
+        devices:
+            - /dev/ttyACM0:/dev/ttyACM0
+        networks:
+          - iot
+
+networks:
+  iot:
+    name: iot
+    external: true

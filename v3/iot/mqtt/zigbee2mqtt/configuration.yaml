@@ -1,0 +1,14 @@
+permit_join: true
+mqtt:
+    base_topic: zigbee2mqtt
+    server: mqtt://mqtt
+    user: user # TODO: your user 
+    password: password # TODO: your password
+serial:
+    port: /dev/ttyACM0
+frontend:
+    port: 8080
+advanced:
+    network_key:
+      - 1 
+      # TODO: your network key
