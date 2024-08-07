@@ -23,5 +23,6 @@ mosquitto_passwd mqttcreds.txt admin # append user to file
 
 2. Update `mqtt/zigbee2mqtt/configuration.yaml` with your mqtt credentials and [network key](https://www.zigbee2mqtt.io/guide/configuration/zigbee-network.html#network-config).
 
-3. Deploy the contents of mqtt folder to your server, run with `docker compose up -d`
+3. `docker network create iot`
 
+4. Deploy the contents of mqtt folder to your server, run with `docker compose up -d`
