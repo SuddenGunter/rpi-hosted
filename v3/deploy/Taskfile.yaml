@@ -4,11 +4,15 @@ tasks:
   iot:
     cmds:
       - task: compose
-        vars: { NETWORK: 'iot', APP: 'mqtt' }
+        vars:
+          NETWORK: 'iot'
+          APP: 'mqtt'
   infra:
     cmds:
       - task: compose
-        vars: { NETWORK: 'infra', APP: 'reproxy' }
+        vars:
+          NETWORK: 'infra'
+          APP: 'reproxy'
   compose:
     dir: '{{.USER_WORKING_DIR}}'
     cmds:
