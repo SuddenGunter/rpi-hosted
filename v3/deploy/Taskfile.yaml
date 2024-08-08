@@ -10,6 +10,7 @@ tasks:
       - task: compose
         vars: { NETWORK: 'infra', APP: 'reproxy' }
   compose:
+    dir: '{{.USER_WORKING_DIR}}'
     cmds:
       - |
         if ! docker network ls | grep -q "$NETWORK"; then
