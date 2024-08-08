@@ -1,0 +1,14 @@
+version: '3'
+
+
+includes:
+  deploy: ./deploy/Taskfile.yaml
+
+tasks:
+  update:
+    cmds:
+      - git fetch && git pull
+  deploy-all:
+    cmds:
+      - |
+        NETWORK=iot APP=mqtt task deploy
