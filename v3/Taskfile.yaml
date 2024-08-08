@@ -8,7 +8,9 @@ tasks:
   update:
     cmds:
       - git fetch && git pull
+
   deploy-all:
     cmds:
       - |
-        NETWORK=iot APP=mqtt task deploy:compose
+        task deploy:iot
+        task deploy:infra
