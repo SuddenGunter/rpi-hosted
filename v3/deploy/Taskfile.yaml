@@ -1,7 +1,7 @@
 version: '3'
 
 tasks:
-  deploy:
+  compose:
     cmds:
       - |
         if ! docker network ls | grep -q "$NETWORK"; then

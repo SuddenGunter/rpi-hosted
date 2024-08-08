@@ -11,4 +11,4 @@ tasks:
   deploy-all:
     cmds:
       - |
-        NETWORK=iot APP=mqtt task deploy
+        NETWORK=iot APP=mqtt task deploy:compose
