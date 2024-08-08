@@ -10,7 +10,8 @@ services:
         ports:
           - '80:8080'
           - '443:8443'
-          - '8081:8081' # todo expose but not on host 
+        expose:
+          - '8081' 
         networks:
           - infra
           - iot
