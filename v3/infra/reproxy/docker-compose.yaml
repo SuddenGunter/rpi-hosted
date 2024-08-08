@@ -6,10 +6,11 @@ services:
         volumes:
             - './reproxy/config.yaml:/reproxy/config.yaml'
             - './reproxy/certs:/reproxy/certs'
-        command: 'reproxy --ssl.type=static --ssl.cert=/reproxy/certs/fullchain.pem --ssl.key=/reproxy/certs/privkey.pem --file.enabled --file.name=/reproxy/config.yaml'
+        command: reproxy --mgmt.enabled --ssl.type=static --ssl.cert=/reproxy/certs/fullchain.pem --ssl.key=/reproxy/certs/privkey.pem --file.enabled --file.name=/reproxy/config.yaml'
         ports:
           - '80:8080'
           - '443:8443'
+          - '8081:8081' # todo expose but not on host 
         networks:
           - infra
           - iot
