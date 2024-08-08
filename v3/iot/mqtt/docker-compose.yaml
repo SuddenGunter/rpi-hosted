@@ -8,6 +8,8 @@ services:
             - './mqtt/custom.conf:/mqttconf/custom.conf'
             - './mqtt/mqttcreds.txt:/mqttconf/mqttcreds.txt'
         command: 'mosquitto -c /mqttconf/custom.conf'
+        expose:
+          - 1883/tcp
         networks:
           - iot
     zigbee2mqtt:
@@ -20,6 +22,8 @@ services:
             - TZ=Europe/London
         devices:
             - /dev/ttyACM0:/dev/ttyACM0
+        expose:
+          - 8080/tcp
         networks:
           - iot
 

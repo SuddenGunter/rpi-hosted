@@ -1,0 +1,16 @@
+version: '3'
+
+tasks:
+  compose:
+    cmds:
+      - |
+        if ! docker network ls | grep -q "$NETWORK"; then
+          echo "Creating Docker network: $NETWORK"
+          docker network create "$NETWORK"
+        else
+          echo "Docker network $NETWORK already exists."
+        fi
+
+        docker compose -f $NETWORK/$APP/docker-compose.yaml up -d --remove-orphans --wait
+    requires:
+      vars: [NETWORK, APP]
