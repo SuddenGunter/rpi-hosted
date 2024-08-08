@@ -17,6 +17,7 @@ tasks:
     dir: '{{.USER_WORKING_DIR}}'
     cmds:
       - |
+        echo "Deploying $APP on $NETWORK network"
         if ! docker network ls | grep -q "$NETWORK"; then
           echo "Creating Docker network: $NETWORK"
           docker network create "$NETWORK"
