@@ -7,8 +7,8 @@ services:
             - './reproxy/config.yaml:/reproxy/config.yaml'
         command: 'reproxy --file.enabled --file.name=/reproxy/config.yaml'
         ports:
-          - '80:80'
-          - '443:443'
+          - '80:8080'
+          - '443:8443'
         networks:
           - infra
           - iot
