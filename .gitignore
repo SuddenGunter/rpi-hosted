@@ -9,3 +9,6 @@
 v3/iot/mqtt/zigbee2mqtt/database.db
 v3/iot/mqtt/zigbee2mqtt/log/
 v3/iot/mqtt/zigbee2mqtt/state.json
+
+# ssl certs
+*.pem

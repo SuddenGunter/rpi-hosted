@@ -6,6 +6,19 @@ V3 is organized by docker network. Deployment is done using [go-task](https://gi
 
 Infra handles reverse-proxy, metrics collection etc.
 
+
+### reproxy
+
+Reproxy is a reverse proxy that (in current configuration) designed to work over https. I use certbot generated certificate that I share with reproxy container via docker volume. I generate certs via certbot manually for now.
+
+```sh
+docker run -it --rm --name certbot \
+                        -v "./letsencrypt:/etc/letsencrypt"  -v "./cf:/cf" \
+                        certbot/dns-cloudflare certonly --dns-cloudflare --dns-cloudflare-credentials='/cf/cfcreds'  -d '*.myhostname'
+```
+
+
+
 ## iot
 
 IoT is a network for mqtt, zigbee2mqtt and smart home automations.
