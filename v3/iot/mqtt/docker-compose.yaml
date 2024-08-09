@@ -36,10 +36,13 @@ services:
           - MQTT_USERNAME=/run/secrets/mqttname
           - MQTT_PASSWORD=/run/secrets/mqttpassword
           - PROMETHEUS_PORT=9999
+      secrets:
+          - mqttpassword
+          - mqttname
       expose:
-        - 9999/tcp
+          - 9999/tcp
       networks:
-        - iot
+          - iot
 
 networks:
   iot:
@@ -48,6 +51,6 @@ networks:
 
 secrets:
    mqttname:
-     file: mqttexp/mqttname.txt # plaintext file  with mqtt user name
+     file: ./mqttexp/mqttname.txt # plaintext file  with mqtt user name
    mqttpassword:
-     file: mqttexp/mqttpassword.txt # plaintext file with mqtt password
+     file: ./mqttexp/mqttpassword.txt # plaintext file with mqtt password
