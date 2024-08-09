@@ -6,7 +6,7 @@ services:
       restart: unless-stopped
       image: ghcr.io/suddengunter/tfapromexp:v0.2 # TODO
       devices:
-        - /dev/bus/usb/001/005
+        - /dev/bus/usb/001/003
       expose:
         - 9999/tcp
       networks:
