@@ -31,8 +31,6 @@ services:
           - '__alloy_export=true'
       restart: unless-stopped
       image: kpetrem/mqtt-exporter:1.4.7
-      ports:
-          - 9000:9000
       environment:
           - MQTT_ADDRESS=mqtt
           - MQTT_USERNAME=/run/secrets/mqttname
@@ -50,6 +48,6 @@ networks:
 
 secrets:
    mqttname:
-     file: mqttname.txt # plaintext file  with mqtt user name
+     file: mqttexp/mqttname.txt # plaintext file  with mqtt user name
    mqttpassword:
-     file: mqttpassword.txt # plaintext file with mqtt password
+     file: mqttexp/mqttpassword.txt # plaintext file with mqtt password
