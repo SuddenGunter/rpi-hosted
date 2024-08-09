@@ -49,3 +49,7 @@ mosquitto_passwd mqttcreds.txt admin # append user to file
 
 
 3. Run `task deploy:iot`.
+
+### co2
+
+I use my [custom image](https://github.com/SuddenGunter/tfapromexp) to collect CO2/temp metrics from a usb device and export them as a prometheus metrics.
