@@ -25,7 +25,6 @@ docker run -it --rm --name certbot \
 ```
 
 
-
 ## iot
 
 IoT is a network for mqtt, zigbee2mqtt and smart home automations.

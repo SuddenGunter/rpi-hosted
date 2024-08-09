@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+    tfaco2:
+      labels:
+        - '__alloy_export=true'
+      restart: unless-stopped
+      image: ghcr.io/suddengunter/tfapromexp:v0.2 # TODO
+      devices:
+        - /dev/bus/usb/001/005
+      expose:
+        - 9999/tcp
+      networks:
+        - iot
+
+networks:
+  iot:
+    name: iot
+    external: true
