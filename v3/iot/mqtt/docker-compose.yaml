@@ -26,6 +26,16 @@ services:
             - 8080/tcp
         networks:
           - iot
+    mqtt-exporter:
+      labels:
+          - '__alloy_export=true'
+      restart: unless-stopped
+      image: kpetrem/mqtt-exporter:1.4.7
+      env_file: "mqttexp/mqtt.env"
+      expose:
+          - 9999/tcp
+      networks:
+          - iot
 
 networks:
   iot:

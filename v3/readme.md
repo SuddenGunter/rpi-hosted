@@ -34,7 +34,7 @@ To deploy use `task deploy:infra`
 
 ### mqtt
 
-MQTT directory deploys zigbee2mqtt and eclipse mosquitto.
+MQTT directory deploys zigbee2mqtt and eclipse mosquitto. Mqtt-exporter exportes all metrics from zigbee2mqtt topics. It generates A LOT of metrics (5K+ series right from the srtart), so be careful if using cloud based metrics storage.
 
 My setup is for connbee II, which is usually being mounted on the host system as `/dev/ttyACM0`. If you use another zigbee donngle, you might need to update `mqtt/zigbee2mqtt/configuration.yaml` and `docker-compose.yaml` to use your device.
 
