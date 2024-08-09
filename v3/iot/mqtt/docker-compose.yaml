@@ -32,10 +32,10 @@ services:
       restart: unless-stopped
       image: kpetrem/mqtt-exporter:1.4.7
       environment:
-          - MQTT_ADDRESS=mqtt
-          - MQTT_USERNAME=/run/secrets/mqttname
-          - MQTT_PASSWORD=/run/secrets/mqttpassword
-          - PROMETHEUS_PORT=9999
+            MQTT_ADDRESS: mqtt
+            MQTT_USERNAME: /run/secrets/mqttname
+            MQTT_PASSWORD: /run/secrets/mqttpassword
+            PROMETHEUS_PORT: 9999
       secrets:
           - mqttpassword
           - mqttname
