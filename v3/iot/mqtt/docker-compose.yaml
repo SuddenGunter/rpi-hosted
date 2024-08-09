@@ -22,10 +22,8 @@ services:
             - TZ=Europe/London
         devices:
             - /dev/ttyACM0:/dev/ttyACM0
-        ports:
-            - 8080:8080
-        # expose:
-        #   - 8080/tcp
+        expose:
+            - 8080/tcp
         networks:
           - iot
 
