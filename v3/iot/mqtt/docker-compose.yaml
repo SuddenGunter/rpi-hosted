@@ -26,8 +26,30 @@ services:
             - 8080/tcp
         networks:
           - iot
+    mqtt-exporter:
+      labels:
+          - '__alloy_export=true'
+      restart: unless-stopped
+      image: kpetrem/mqtt-exporter:v1.4.2
+      ports:
+          - 9000:9000
+      environment:
+          - MQTT_ADDRESS=mqtt
+          - MQTT_ADDRESS=/run/secrets/mqttname
+          - MQTT_PASSWORD=/run/secrets/mqttpassword
+          - PROMETHEUS_PORT=9999
+      expose:
+        - 9999/tcp
+      networks:
+        - iot
 
 networks:
   iot:
     name: iot
     external: true
+
+secrets:
+   mqttname:
+     file: mqttname.txt # plaintext file  with mqtt user name
+   mqttpassword:
+     file: mqttpassword.txt # plaintext file with mqtt password
