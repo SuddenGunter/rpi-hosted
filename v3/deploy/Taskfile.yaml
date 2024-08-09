@@ -7,6 +7,10 @@ tasks:
         vars:
           NETWORK: 'iot'
           APP: 'mqtt'
+      - task: compose
+        vars:
+          NETWORK: 'iot'
+          APP: 'co2'
   infra:
     cmds:
       - task: compose
