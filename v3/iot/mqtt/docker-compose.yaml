@@ -30,7 +30,7 @@ services:
       labels:
           - '__alloy_export=true'
       restart: unless-stopped
-      image: kpetrem/mqtt-exporter:v1.4.2
+      image: kpetrem/mqtt-exporter:1.4.7
       ports:
           - 9000:9000
       environment:
