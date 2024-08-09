@@ -6,6 +6,13 @@ V3 is organized by docker network. Deployment is done using [go-task](https://gi
 
 Infra handles reverse-proxy, metrics collection etc.
 
+### metrics
+
+I use grafana cloud for metrics and logs storage and grafana alloy for collection. My config is backed up in infra/metrics, don't forget to add your own usernames/urls/api keys.
+
+It exports metrics from host, cadvisor and :9999/metrics from all containers that have `__alloy_export=true` label.
+
+For cadvisor to work you must run alloy as root.
 
 ### reproxy
 

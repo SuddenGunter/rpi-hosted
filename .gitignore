@@ -4,6 +4,7 @@
 *prod.txt
 *prod.yaml
 *prod.yaml
+*prod.alloy
 
 # z2m data
 v3/iot/mqtt/zigbee2mqtt/database.db

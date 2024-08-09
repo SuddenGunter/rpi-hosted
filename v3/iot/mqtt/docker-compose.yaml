@@ -23,7 +23,7 @@ services:
         devices:
             - /dev/ttyACM0:/dev/ttyACM0
         expose:
-          - 8080/tcp
+            - 8080/tcp
         networks:
           - iot
 
