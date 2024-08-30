@@ -8,9 +8,6 @@ I got tired of kubernetes limitations when trying to use a single RPi mostly for
 
 Went back to docker-compose files.
 
-# TODO VPN:
-- https://coredns.io/explugins/records/ + hosted/wireguard
-
 ## K3s (v2 / deprecated)
 
 Pi 4 (4GB) running ubuntu server and k3s.
