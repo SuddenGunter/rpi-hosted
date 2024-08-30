@@ -2,9 +2,13 @@
 
 V3 is organized by docker network. Deployment is done using [go-task](https://github.com/go-task/task)
 
+## VPS
+
+VPS contains setup for cheap cloud VPS that is used for VPN access to home server.  See vps/wireguard/readme.md and vps/dns/readme.md for details.
+
 ## infra
 
-Infra handles reverse-proxy, metrics collection etc.
+Infra handles reverse-proxy, metrics collection etc. 
 
 ### metrics
 
