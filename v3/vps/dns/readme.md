@@ -25,7 +25,7 @@ Description=CoreDNS DNS Server
 After=network.target
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/coredns -conf /etc/coredns/Corefile
+ExecStart=/usr/bin/coredns -conf /etc/coredns/Corefile
 [Install]
 WantedBy=multi-user.target
 ```
