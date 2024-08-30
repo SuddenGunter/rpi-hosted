@@ -2,7 +2,7 @@
 
 VPS DNS configuration is based on [this article](https://www.procustodibus.com/blog/2023/01/wireguard-internal-dns-names/#install-coredns) and [another article](https://ipv6.rs/tutorial/Ubuntu_Server_Latest/CoreDNS/).
 
-1. Download coreDNS binary from Github releases, put it to /use/bin/coredns
+1. Download coreDNS binary from Github releases, put it to /usr/bin/coredns
 2. Write `/etc/coredns/Corefile` and configure your domains to point to RPI private IP:
 
 ```
