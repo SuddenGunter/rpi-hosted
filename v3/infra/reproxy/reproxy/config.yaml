@@ -1,5 +1,5 @@
 # replace host.local with your domain
 z2m.host.local: #
   - { route: "^(.*)", dest: "http://zigbee2mqtt:8080/$1" }
-host.local: #
+dash.host.local: #
   - { route: "^(.*)", dest: "http://dash:4000/$1" }
