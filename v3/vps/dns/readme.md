@@ -9,8 +9,8 @@ VPS DNS configuration is based on [this article](https://www.procustodibus.com/b
 .:53 {
     bind 0.0.0.0 ::
     hosts {
-      __PRIVATE_SUBNET__.90 mydomain.test
-      __PRIVATE_SUBNET__.90 mydomain.test2
+      __PRIVATE_SUBNET__.90 host.local
+      __PRIVATE_SUBNET__.90 host.local2
       fallthrough
     }
     forward . 1.1.1.1

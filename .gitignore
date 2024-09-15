@@ -1,9 +1,8 @@
 .idea
 .env
-*prod.yaml
 *prod.txt
 *prod.yaml
-*prod.yaml
+*prod.yml
 *prod.alloy
 
 # z2m data

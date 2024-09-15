@@ -1,22 +1,28 @@
-version: '3'
+version: "3"
 
 tasks:
   iot:
     cmds:
       - task: compose
         vars:
-          NETWORK: 'iot'
-          APP: 'mqtt'
+          NETWORK: "iot"
+          APP: "mqtt"
       - task: compose
         vars:
-          NETWORK: 'iot'
-          APP: 'co2'
+          NETWORK: "iot"
+          APP: "co2"
   infra:
     cmds:
       - task: compose
         vars:
-          NETWORK: 'infra'
-          APP: 'reproxy'
+          NETWORK: "infra"
+          APP: "reproxy"
+  apps:
+    cmds:
+      - task: compose
+        vars:
+          NETWORK: "apps"
+          APP: "dash"
   compose:
     cmds:
       - |

@@ -17,6 +17,7 @@ services:
         networks:
           - infra
           - iot
+          - apps
 
 networks:
   iot:
@@ -24,4 +25,7 @@ networks:
     external: true
   infra:
     name: infra
+    external: true
+  apps:
+    name: apps
     external: true
