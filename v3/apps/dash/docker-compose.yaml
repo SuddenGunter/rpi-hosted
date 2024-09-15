@@ -1,6 +1,6 @@
 services:
 
-  app:
+  dash:
     image: ghcr.io/suddengunter/dash:v0.0.5
     restart: always
     env_file: dash.env 
