@@ -1,0 +1,20 @@
+services:
+
+  app:
+    image: ghcr.io/suddengunter/dash:v0.0.4
+    restart: always
+    env_file: dash.env 
+    depends_on:
+      - db
+    user: "1000:1000"
+
+  db:
+    image: postgres:16.4
+    restart: always
+    env_file: pg.env
+    volumes:
+      - dashdb:/var/lib/postgresql/data
+    user: "1000:1000"
+
+volumes:
+  dashdb:

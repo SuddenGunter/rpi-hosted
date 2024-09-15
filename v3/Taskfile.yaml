@@ -1,5 +1,4 @@
-version: '3'
-
+version: "3"
 
 includes:
   deploy: ./deploy/Taskfile.yaml
@@ -14,3 +13,4 @@ tasks:
       - |
         task deploy:iot
         task deploy:infra
+        task deploy:apps
