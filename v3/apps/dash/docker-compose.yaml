@@ -7,6 +7,10 @@ services:
     depends_on:
       - db
     user: "1000:1000"
+    expose:
+      - 4000/tcp
+    networks:
+      - apps
 
   db:
     image: postgres:16.4
@@ -18,3 +22,8 @@ services:
 
 volumes:
   dashdb:
+
+networks:
+  apps:
+    name: apps
+    external: true
