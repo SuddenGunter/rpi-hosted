@@ -1,7 +1,7 @@
 services:
 
   app:
-    image: ghcr.io/suddengunter/dash:v0.0.4
+    image: ghcr.io/suddengunter/dash:v0.0.5
     restart: always
     env_file: dash.env 
     depends_on:
