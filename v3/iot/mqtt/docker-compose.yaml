@@ -1,4 +1,3 @@
-version: '3.8'
 services:
     mqtt:
         image: eclipse-mosquitto:2.0.20
@@ -27,10 +26,10 @@ services:
         networks:
           - iot
     mqtt-exporter:
-      labels:
-          - '__alloy_export=true'
+    #   labels:
+    #       - '__alloy_export=true'
       restart: unless-stopped
-      image: kpetrem/mqtt-exporter:1.4.7
+      image: kpetrem/mqtt-exporter:1.6.1
       env_file: "mqttexp/mqtt.env"
       expose:
           - 9999/tcp
