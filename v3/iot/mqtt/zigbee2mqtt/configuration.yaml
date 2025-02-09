@@ -1,5 +1,5 @@
-availability: true
-permit_join: true
+availability:
+    enabled: true
 mqtt:
     base_topic: zigbee2mqtt
     server: mqtt://mqtt
