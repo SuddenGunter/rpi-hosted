@@ -20,11 +20,11 @@ services:
         environment:
             - TZ=Europe/London
         devices:
-            - /dev/ttyACM0:/dev/ttyACM0
+            - /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE2191866-if00:/dev/ttyACM0
         expose:
             - 8080/tcp
         networks:
-          - iot
+            - iot
     mqtt-exporter:
     #   labels:
     #       - '__alloy_export=true'
