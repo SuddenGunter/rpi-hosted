@@ -13,7 +13,7 @@ services:
           - iot
     zigbee2mqtt:
         restart: unless-stopped
-        image: koenkk/zigbee2mqtt:1.40.2
+        image: koenkk/zigbee2mqtt:2.1.1
         volumes:
             - ./zigbee2mqtt:/app/data
             - /run/udev:/run/udev:ro
