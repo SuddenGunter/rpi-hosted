@@ -1,0 +1,42 @@
+http:
+  routers:
+    router-z2m:
+      rule: "Host(`z2m.host.local`)"
+      entryPoints:
+        - websecure
+      service: zigbee2mqtt-svc
+      tls: true  # Enable TLS
+      middlewares:
+        - hsts
+
+    router-dash:
+      rule: "Host(`dash.host.local`)"
+      entryPoints:
+        - websecure
+      service: dash-svc
+      tls: true
+      middlewares:
+        - hsts
+
+  services:
+    zigbee2mqtt-svc:
+      loadBalancer:
+        servers:
+          - url: "http://zigbee2mqtt:8080"
+    dash-svc:
+      loadBalancer:
+        servers:
+          - url: "http://dash:4000"
+
+  middlewares:
+    hsts:
+      headers:
+        customResponseHeaders:
+          Strict-Transport-Security: "max-age=63072000; includeSubDomains"
+
+tls:
+  stores:
+    default:
+      defaultCertificate:
+        certFile: /traefik/certs/fullchain.pem
+        keyFile: /traefik/certs/privkey.pem

@@ -1,15 +1,26 @@
-availability: true
-permit_join: true
+version: 4
+
+homeassistant:
+    enabled: false
+
+frontend:
+    enabled: true
+    port: 8080
+
 mqtt:
     base_topic: zigbee2mqtt
-    server: mqtt://mqtt
-    user: user # TODO: your user 
-    password: password # TODO: your password
+    server: 'mqtt://mqtt'
+    user: my_user
+    password: my_password
+
 serial:
     port: /dev/ttyACM0
-frontend:
-    port: 8080
+    adapter: deconz
+
+availability:
+    enabled: false
+
 advanced:
-    network_key:
-      - 1 
-      # TODO: your network key
+    network_key: GENERATE
+    pan_id: GENERATE
+    ext_pan_id: GENERATE

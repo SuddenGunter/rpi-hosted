@@ -1,0 +1,29 @@
+services:
+  traefik:
+    image: traefik:v3.3.3
+    restart: unless-stopped
+    command:
+      - "--providers.file.directory=/etc/traefik/dynamic"
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entryPoints.web.http.redirections.entryPoint.scheme=https"
+      - "--entryPoints.websecure.address=:443"
+      - "--log.level=INFO"
+    ports:
+      - "443:443"
+    volumes:
+      - "./traefik/dynamic:/etc/traefik/dynamic:ro"
+      - "./traefik/certs:/traefik/certs:ro"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - infra
+      - iot
+      - apps
+
+networks:
+  infra:
+    external: true
+  iot:
+    external: true
+  apps:
+    external: true

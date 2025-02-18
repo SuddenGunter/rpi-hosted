@@ -16,7 +16,7 @@ tasks:
       - task: compose
         vars:
           NETWORK: "infra"
-          APP: "reproxy"
+          APP: "traefik"
   apps:
     cmds:
       - task: compose
