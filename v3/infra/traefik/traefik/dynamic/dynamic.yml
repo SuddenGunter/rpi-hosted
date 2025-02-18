@@ -5,15 +5,16 @@ http:
       entryPoints:
         - websecure
       service: zigbee2mqtt-svc
-      tls: {}  # Enable TLS for this router
+      tls: true  # Enable TLS
       middlewares:
         - hsts
+
     router-dash:
       rule: "Host(`dash.host.local`)"
       entryPoints:
         - websecure
       service: dash-svc
-      tls: {}
+      tls: true
       middlewares:
         - hsts
 
@@ -33,8 +34,9 @@ http:
         customResponseHeaders:
           Strict-Transport-Security: "max-age=63072000; includeSubDomains"
 
-# Load your own TLS certificates – these will be used as the default
 tls:
-  certificates:
-    - certFile: /traefik/certs/fullchain.pem
-      keyFile: /traefik/certs/privkey.pem
+  stores:
+    default:
+      defaultCertificate:
+        certFile: /traefik/certs/fullchain.pem
+        keyFile: /traefik/certs/privkey.pem
