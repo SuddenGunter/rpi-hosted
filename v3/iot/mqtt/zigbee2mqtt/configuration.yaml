@@ -18,7 +18,7 @@ serial:
     adapter: deconz
 
 availability:
-    enabled: false
+    enabled: true
 
 advanced:
     network_key: GENERATE
