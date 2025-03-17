@@ -1,12 +1,11 @@
 services:
 
   dash:
-    image: ghcr.io/suddengunter/dash:v0.3.8
+    image: ghcr.io/suddengunter/hsd:v0.2.0
     restart: unless-stopped
-    env_file: dash.env 
-    user: "1000:1000"
+    env_file: hsd.env 
     expose:
-      - 4000/tcp
+      - 8080/tcp
     networks:
       - apps
 

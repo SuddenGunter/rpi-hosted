@@ -14,3 +14,5 @@ v3/iot/mqtt/zigbee2mqtt/state.json
 *.pem
 
 *prod.env
+
+.DS_Store
