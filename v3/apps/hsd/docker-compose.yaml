@@ -13,3 +13,6 @@ networks:
   apps:
     name: apps
     external: true
+  iot:
+    name: iot
+    external: true
