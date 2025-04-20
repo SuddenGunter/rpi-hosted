@@ -1,7 +1,7 @@
 services:
 
   dash:
-    image: ghcr.io/suddengunter/hsd:v0.3.2
+    image: ghcr.io/suddengunter/hsd:v0.3.3
     restart: unless-stopped
     env_file: hsd.env 
     expose:
