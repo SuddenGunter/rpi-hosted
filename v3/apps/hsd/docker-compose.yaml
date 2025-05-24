@@ -1,6 +1,6 @@
 services:
 
-  dash:
+  app:
     image: ghcr.io/suddengunter/hsd:v0.3.4
     restart: unless-stopped
     env_file: hsd.env 
