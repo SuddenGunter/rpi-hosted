@@ -1,5 +1,5 @@
 services:
-    app:
+    tfapromexp:
       labels:
         - '__alloy_export=true'
       restart: unless-stopped
