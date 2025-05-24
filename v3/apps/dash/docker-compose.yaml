@@ -1,5 +1,4 @@
 services:
-
   app:
     image: ghcr.io/suddengunter/dash:v0.3.8
     restart: unless-stopped

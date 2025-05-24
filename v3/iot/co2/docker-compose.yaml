@@ -1,10 +1,9 @@
-version: '3.8'
 services:
-    tfaco2:
+    app:
       labels:
         - '__alloy_export=true'
       restart: unless-stopped
-      image: ghcr.io/suddengunter/tfapromexp:v0.2.1
+      image: ghcr.io/suddengunter/tfapromexp:v0.2.2
       devices:
         - /dev/bus/usb/001/004
       expose:
