@@ -14,15 +14,16 @@ mqtt:
     password: my_password
 
 serial:
-    port: /dev/ttyACM0
-    adapter: ember
+  port: /dev/ttyACM0
+  adapter: ember
 
 availability:
-    enabled: true
+  enabled: true
 
 advanced:
-    last_seen: epoch
-    elapsed: true
-    network_key: GENERATE
-    pan_id: GENERATE
-    ext_pan_id: GENERATE
+  last_seen: epoch
+  elapsed: true
+  network_key: GENERATE
+  pan_id: GENERATE
+  ext_pan_id: GENERATE
+  transmit_power: 11
