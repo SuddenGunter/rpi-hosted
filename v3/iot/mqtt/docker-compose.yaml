@@ -13,14 +13,14 @@ services:
           - iot
     zigbee2mqtt:
         restart: unless-stopped
-        image: koenkk/zigbee2mqtt:2.2.1
+        image: koenkk/zigbee2mqtt:2.4
         volumes:
             - ./zigbee2mqtt:/app/data
             - /run/udev:/run/udev:ro
         environment:
             - TZ=Europe/London
         devices:
-            - /dev/ttyACM0:/dev/ttyACM0
+            - /dev/ttyUSB0:/dev/ttyACM0
         expose:
             - 8080/tcp
         networks:
@@ -29,7 +29,7 @@ services:
       labels:
           - '__alloy_export=true'
       restart: unless-stopped
-      image: kpetrem/mqtt-exporter:1.6.1
+      image: kpetrem/mqtt-exporter:1.7.0
       env_file: "mqttexp/mqtt.env"
       expose:
           - 9999/tcp

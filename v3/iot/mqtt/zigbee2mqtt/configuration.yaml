@@ -15,12 +15,14 @@ mqtt:
 
 serial:
     port: /dev/ttyACM0
-    adapter: deconz
+    adapter: ember
 
 availability:
     enabled: true
 
 advanced:
+    last_seen: epoch
+    elapsed: true
     network_key: GENERATE
     pan_id: GENERATE
     ext_pan_id: GENERATE
