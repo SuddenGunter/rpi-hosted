@@ -1,0 +1,25 @@
+services:
+  plex:
+    image: ghcr.io/linuxserver/plex:1.42.2.10156-f737b826c-ls281
+    container_name: plex
+    ports:
+      - "32400:32400"
+      - "1900:1900/udp"
+      - "5353:5353/udp"
+      - "8324:8324"
+      - "32410:32410/udp"
+      - "32412:32412/udp"
+      - "32413:32413/udp"
+      - "32414:32414/udp"
+      - "32469:32469"
+    environment:
+      PUID: 1000
+      PGID: 100
+      TZ: Etc/UTC
+      VERSION: docker
+      PLEX_CLAIM: SET_YOUR OWN_CLAIM_TOKEN_HERE # it's mandatory if using bridge (non host) network
+    volumes:
+      - /volume1/docker/plex:/config
+      - /volume1/docker/qbit/downloads/series:/tv
+      - /volume1/docker/qbit/downloads/movies:/movies
+    restart: unless-stopped
