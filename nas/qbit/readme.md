@@ -1,6 +1,7 @@
 # qbittorrent with wireguard
 
-1. Create config folder that your docker container will be able to mount
+1. Create config folder that your docker container will be able to mount. You must
+create both folder for config and downloads, otherwise NAS does not allow to launch this.
 2. Put your wireguard config into `config/wireguard/wg0.conf`
 3. In docker-compose don't forget to change set correct env variables. If you want to have access to torrent UI via VPN you also need to add VPN network into LAN_NETWORK env variable.
 4. Access the webUI, The default credentials to log in are:
