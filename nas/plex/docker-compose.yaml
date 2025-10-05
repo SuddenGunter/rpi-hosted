@@ -17,7 +17,7 @@ services:
       PGID: 100
       TZ: Etc/UTC
       VERSION: docker
-      PLEX_CLAIM: SET_YOUR OWN_CLAIM_TOKEN_HERE # it's mandatory if using bridge (non host) network
+      PLEX_CLAIM: SET_YOUR_OWN_CLAIM_TOKEN_HERE # it's mandatory if using bridge (non host) network
     volumes:
       - /volume1/docker/plex:/config
       - /volume1/docker/qbit/downloads/series:/tv
