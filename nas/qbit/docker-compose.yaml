@@ -13,7 +13,7 @@ services:
     environment:
       QBT_LEGAL_NOTICE: confirm
       PUID: 1000
-      PGID: 100
+      PGID: 10
       LAN_NETWORK: 192.168.0.0/24 # Adjust to your local network
       TZ: Etc/UTC
       HEALTH_CHECK_INTERVAL: 600
