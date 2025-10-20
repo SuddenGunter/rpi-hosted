@@ -18,9 +18,9 @@ It exports metrics from host, cadvisor and :9999/metrics from all containers tha
 
 For cadvisor to work you must run alloy as root.
 
-### reproxy
+### traefik
 
-Reproxy is a reverse proxy that (in current configuration) designed to work over https. I use certbot generated certificate that I share with reproxy container via docker volume. I generate certs via certbot manually for now.
+Traefik is a reverse proxy that (in current configuration) designed to work over https. I use certbot generated certificate that I share with traefik container via docker volume. I generate certs via certbot manually for now.
 
 ```sh
 docker run -it --rm --name certbot \
