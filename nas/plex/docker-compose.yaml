@@ -22,4 +22,5 @@ services:
       - /volume1/docker/plex:/config
       - /volume1/docker/qbit/downloads/series:/tv
       - /volume1/docker/qbit/downloads/movies:/movies
+      - /volume1/docker/qbit/downloads/audiobooks:/audiobooks
     restart: unless-stopped
