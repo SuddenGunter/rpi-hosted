@@ -1,6 +1,6 @@
 services:
   qbittorrent-wireguard:
-    image: ghcr.io/suddengunter/docker-qbittorrent-wireguard:v1.0
+    image: ghcr.io/suddengunter/docker-qbittorrent-wireguard:v1.1
     container_name: qbittorrent-wireguard
     restart: unless-stopped
     privileged: true
