@@ -1,6 +1,6 @@
 services:
   dash:
-    image: ghcr.io/suddengunter/dash:v0.4.0
+    image: ghcr.io/suddengunter/dash:v0.4.1
     restart: unless-stopped
     env_file: dash.env 
     user: "1000:1000"
