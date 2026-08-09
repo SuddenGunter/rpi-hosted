@@ -1,7 +1,12 @@
 services:
   plex:
-    image: ghcr.io/linuxserver/plex:1.43.2.10687-563d026ea-ls309
+    image: ghcr.io/linuxserver/plex:1.43.3.10861-07dfddaeb-ls318
     container_name: plex
+    devices:
+      - /dev/dri:/dev/dri
+    networks:
+        macvlan_plex:
+            ipv4_address: 'TODO' # public IP from your LAN subnet, e.g. 192.168.0.X
     ports:
       - "32400:32400"
       # - "1900:1900/udp" DLNA - conflicts with NAS
@@ -12,8 +17,6 @@ services:
       - "32413:32413/udp"
       - "32414:32414/udp"
       - "32469:32469"
-    devices:
-      - /dev/dri:/dev/dri
     environment:
       PUID: 1000
       PGID: 10
@@ -23,6 +26,13 @@ services:
     volumes:
       - /volume1/docker/plex:/config
       - /volume1/docker/qbit/downloads/series:/tv
-      - /volume1/docker/qbit/downloads/movies:/movies
       - /volume1/docker/qbit/downloads/audiobooks:/audiobooks
+      - /volume1/docker/qbit/downloads/movies:/movies
+      - /volume1/docker/qbit/downloads/music:/music
     restart: unless-stopped
+
+networks:
+  macvlan_plex:
+    driver: macvlan_plex
+    name: macvlan_plex
+    external: true
