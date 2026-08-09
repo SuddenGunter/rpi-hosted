@@ -1,6 +1,6 @@
 services:
     mqtt:
-        image: eclipse-mosquitto:2.0.21
+        image: eclipse-mosquitto:2.0.22
         restart: unless-stopped
         volumes:
             - './mqtt/mosquitto-data:/mosquitto'
@@ -13,7 +13,7 @@ services:
           - iot
     zigbee2mqtt:
         restart: unless-stopped
-        image: koenkk/zigbee2mqtt:2.4
+        image: koenkk/zigbee2mqtt:2.13
         volumes:
             - ./zigbee2mqtt:/app/data
             - /run/udev:/run/udev:ro
@@ -36,7 +36,7 @@ services:
       networks:
           - iot
     nodered:
-      image: nodered/node-red:4.1.2-22
+      image: nodered/node-red:4.1.13-22
       restart: unless-stopped
       environment:
           - TZ=Europe/London
