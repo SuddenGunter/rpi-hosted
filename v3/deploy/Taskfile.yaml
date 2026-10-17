@@ -3,23 +3,10 @@ version: "3"
 tasks:
   iot:
     cmds:
-      - |
-        if [ ! -d "iot/mqtt/nodered/nodered-data" ]; then
-          echo "Creating nodered data directory..."
-          mkdir -p iot/mqtt/nodered/nodered-data
-          sudo chown -R 1000:1000 iot/mqtt/nodered/nodered-data
-          echo "nodered data directory created with correct permissions."
-        else
-          echo "nodered data directory already exists."
-        fi
       - task: compose
         vars:
           NETWORK: "iot"
           APP: "mqtt"
-      - task: compose
-        vars:
-          NETWORK: "iot"
-          APP: "co2"
   infra:
     cmds:
       - task: compose
@@ -32,10 +19,6 @@ tasks:
         vars:
           NETWORK: "apps"
           APP: "dash"
-      - task: compose
-        vars:
-          NETWORK: "apps"
-          APP: "hsd"
   compose:
     cmds:
       - |
