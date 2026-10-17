@@ -13,7 +13,7 @@ services:
           - iot
     zigbee2mqtt:
         restart: unless-stopped
-        image: koenkk/zigbee2mqtt:2.13
+        image: koenkk/zigbee2mqtt:2.14
         volumes:
             - ./zigbee2mqtt:/app/data
             - /run/udev:/run/udev:ro
@@ -25,27 +25,6 @@ services:
             - 8080/tcp
         networks:
             - iot
-    mqtt-exporter:
-      labels:
-          - '__alloy_export=true'
-      restart: unless-stopped
-      image: kpetrem/mqtt-exporter:1.7.0
-      env_file: "mqttexp/mqtt.env"
-      expose:
-          - 9999/tcp
-      networks:
-          - iot
-    nodered:
-      image: nodered/node-red:4.1.13-22
-      restart: unless-stopped
-      environment:
-          - TZ=Europe/London
-      expose:
-          - 1880/tcp
-      volumes:
-          - './nodered/nodered-data:/data'
-      networks:
-          - iot
 
 networks:
   iot:
