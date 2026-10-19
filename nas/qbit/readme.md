@@ -21,6 +21,7 @@ create both folder for config and downloads, otherwise NAS does not allow to lau
 [Interface]
 Address = 1.1.1.1/32
 PrivateKey = abc_private_key
+DNS = 1.1.1.1 # Since v1.3 DNS must be specified otherwise container will not have DNS resolution
 
 # VPN server
 [Peer]
