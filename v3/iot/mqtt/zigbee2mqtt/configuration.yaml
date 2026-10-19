@@ -21,3 +21,5 @@ frontend:
 homeassistant:
   enabled: false
 onboarding: true
+availability:
+    enabled: true
