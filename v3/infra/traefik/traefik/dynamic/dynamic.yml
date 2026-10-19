@@ -18,15 +18,6 @@ http:
       middlewares:
         - hsts
 
-    router-nodered:
-      rule: "Host(`nodered.host.local`)"
-      entryPoints:
-        - websecure
-      service: nodered-svc
-      tls: true
-      middlewares:
-        - hsts
-
   services:
     zigbee2mqtt-svc:
       loadBalancer:
@@ -36,10 +27,6 @@ http:
       loadBalancer:
         servers:
           - url: "http://dash:4000"
-    nodered-svc:
-      loadBalancer:
-        servers:
-          - url: "http://nodered:1880"
 
   middlewares:
     hsts:
