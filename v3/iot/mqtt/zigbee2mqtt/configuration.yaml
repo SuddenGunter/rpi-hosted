@@ -5,7 +5,9 @@ mqtt:
   version: 5
   user: user
   password: password
-serial: {}
+serial:
+  port: /dev/ttyACM0
+  adapter: ember
 advanced:
   log_level: info
   channel: 11
