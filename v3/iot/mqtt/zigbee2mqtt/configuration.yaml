@@ -16,10 +16,9 @@ advanced:
   ext_pan_id: GENERATE
   enable_external_js: false
 frontend:
-  enabled: false
+  enabled: true
   port: 8080
 homeassistant:
   enabled: false
-onboarding: true
 availability:
     enabled: true
