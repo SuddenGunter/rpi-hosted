@@ -1,6 +1,6 @@
 services:
     mqtt:
-        image: eclipse-mosquitto:2.0.22
+        image: eclipse-mosquitto:2.1.2-alpine
         restart: unless-stopped
         volumes:
             - './mqtt/mosquitto-data:/mosquitto'
