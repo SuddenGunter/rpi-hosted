@@ -1,12 +1,12 @@
 version: 5
 mqtt:
   base_topic: zigbee2mqtt
-  server: mqtt://localhost:1883
+  server: mqtt://mqtt:1883
   version: 5
   user: user
   password: password
 serial:
-  port: /dev/ttyACM0
+  port: /dev/ttyUSB0
   adapter: ember
 advanced:
   log_level: info
