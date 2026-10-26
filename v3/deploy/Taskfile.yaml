@@ -13,6 +13,7 @@ tasks:
           APP: "zigbee2mqtt"
       - task: compose
         vars:
+          VOLUME_PATH: "./iot/nodered/nodered-data"
           NETWORK: "iot"
           APP: "nodered"
   infra:
@@ -31,6 +32,10 @@ tasks:
     cmds:
       - |
         echo "Deploying {{.APP}} on {{.NETWORK}} network"
+        if [ -n "{{.VOLUME_PATH}}" ]; then
+          echo "Pre-creating {{.VOLUME_PATH}}"
+          mkdir -p "{{.VOLUME_PATH}}"
+        fi
         if ! docker network ls | grep -q "{{.NETWORK}}"; then
           echo "Creating Docker network: {{.NETWORK}}"
           docker network create {{.NETWORK}}

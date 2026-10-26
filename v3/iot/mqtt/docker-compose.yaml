@@ -38,6 +38,7 @@ services:
           - 1880/tcp
       volumes:
           - './nodered/nodered-data:/data'
+      user: "1000:1000"
       networks:
           - iot
 networks:
