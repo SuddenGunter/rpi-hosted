@@ -32,6 +32,7 @@ services:
       restart: unless-stopped
       depends_on:
           - mqtt
+          - zigbee2mqtt
       environment:
           - TZ=Europe/London
       expose:

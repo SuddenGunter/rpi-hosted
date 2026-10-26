@@ -5,14 +5,6 @@ tasks:
     cmds:
       - task: compose
         vars:
-          NETWORK: "iot"
-          APP: "mqtt"
-      - task: compose
-        vars:
-          NETWORK: "iot"
-          APP: "zigbee2mqtt"
-      - task: compose
-        vars:
           VOLUME_PATH: "./iot/nodered/nodered-data"
           NETWORK: "iot"
           APP: "nodered"
