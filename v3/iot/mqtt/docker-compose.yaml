@@ -25,7 +25,17 @@ services:
             - 8080/tcp
         networks:
             - iot
-
+    nodered:
+      image: nodered/node-red:4.1.17-18
+      restart: unless-stopped
+      environment:
+          - TZ=Europe/London
+      expose:
+          - 1880/tcp
+      volumes:
+          - './nodered/nodered-data:/data'
+      networks:
+          - iot
 networks:
   iot:
     name: iot
