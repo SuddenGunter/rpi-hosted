@@ -5,7 +5,7 @@ tasks:
     cmds:
       - task: compose
         vars:
-          VOLUME_PATH: "./iot/nodered/nodered-data"
+          VOLUME_PATH: "./iot/mqtt/nodered/nodered-data"
           NETWORK: "iot"
           APP: "mqtt" # dir name where compose file is located, not actual app name
   infra:
