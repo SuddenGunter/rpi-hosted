@@ -29,6 +29,8 @@ tasks:
           NETWORK: "apps"
           APP: "dash"
   compose:
+    vars:
+      VOLUME_PATH: '{{default "" .VOLUME_PATH}}'
     cmds:
       - |
         echo "Deploying {{.APP}} on {{.NETWORK}} network"
