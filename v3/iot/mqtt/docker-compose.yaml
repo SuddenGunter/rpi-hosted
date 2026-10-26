@@ -22,7 +22,7 @@ services:
         environment:
             - TZ=Europe/London
         devices:
-            - /dev/ttyUSB0:/dev/ttyACM0
+            - /dev/ttyUSB0:/dev/ttyUSB0
         expose:
             - 8080/tcp
         networks:
