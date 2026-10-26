@@ -14,6 +14,8 @@ services:
     zigbee2mqtt:
         restart: unless-stopped
         image: koenkk/zigbee2mqtt:2.14
+        depends_on:
+            - mqtt
         volumes:
             - ./zigbee2mqtt:/app/data
             - /run/udev:/run/udev:ro
@@ -28,6 +30,8 @@ services:
     nodered:
       image: nodered/node-red:4.1.17-18
       restart: unless-stopped
+      depends_on:
+          - mqtt
       environment:
           - TZ=Europe/London
       expose:

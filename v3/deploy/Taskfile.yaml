@@ -7,6 +7,14 @@ tasks:
         vars:
           NETWORK: "iot"
           APP: "mqtt"
+      - task: compose
+        vars:
+          NETWORK: "iot"
+          APP: "zigbee2mqtt"
+      - task: compose
+        vars:
+          NETWORK: "iot"
+          APP: "nodered"
   infra:
     cmds:
       - task: compose
